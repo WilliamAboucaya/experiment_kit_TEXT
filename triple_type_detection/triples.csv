@@ -1,0 +1,120 @@
+PREMISE_SERIALIZED,SUBJECT,PREDICATE,OBJECT
+"[['Flood', 'Causes', 'Evacuation of residents']]",Flood,Causes,Evacuation of residents
+"[['Flood', 'Causes', 'Loss of life']]",Flood,Causes,Loss of life
+"[['Flood warning system', 'Recommends', 'Evacuation of residents']]",Flood warning system,Recommends,Evacuation of residents
+"[['Flood', 'Causes', 'Health and safety risks']]",Flood,Causes,Health and safety risks
+"[['Flood', 'Causes', 'Homes damage']]",Flood,Causes,Homes damage
+"[['Flood', 'Causes', 'Traffic disruption']]",Flood,Causes,Traffic disruption
+"[['Tsunami', 'Causes', 'Flood']]",Tsunami,Causes,Flood
+"[['Storm surges', 'Causes', 'Flood']]",Storm surges,Causes,Flood
+"[['Siphoning', 'Causes', 'Flood']]",Siphoning,Causes,Flood
+"[['Heavy rainfall', 'Causes', 'Flood']]",Heavy rainfall,Causes,Flood
+"[['Flood', 'Causes', 'Business disruption']]",Flood,Causes,Business disruption
+"[['Dam failure', 'Causes', 'Flood']]",Dam failure,Causes,Flood
+"[['Flood warning system', 'Predicts', 'Flood']]",Flood warning system,Predicts,Flood
+"[['River overflow', 'Causes', 'Flood']]",River overflow,Causes,Flood
+"[['Flood', 'Causes', 'Property damage']]",Flood,Causes,Property damage
+"[['Flood', 'Causes', 'Bridge damage']]",Flood,Causes,Bridge damage
+"[['Snowmelt', 'Causes', 'Flood']]",Snowmelt,Causes,Flood
+"[['Flood', 'Causes', 'Buildings damage']]",Flood,Causes,Buildings damage
+"[['Flood', 'Causes', 'Railroads damage']]",Flood,Causes,Railroads damage
+"[['Flood warning system', 'Generates', 'Alerts']]",Flood warning system,Generates,Alerts
+"[['Flood', 'Causes', 'Vehicles damage']]",Flood,Causes,Vehicles damage
+"[['Flood warning system', 'Analyzes', 'Forecasting']]",Flood warning system,Analyzes,Forecasting
+"[['Soil erosion', 'Leads to', 'Loss of life']]",Soil erosion,Leads to,Loss of life
+"[['Flood warning system', 'Uses', 'Sensors']]",Flood warning system,Uses,Sensors
+"[['Flood', 'Causes', 'Soil erosion']]",Flood,Causes,Soil erosion
+"[['Flood', 'Causes', 'Environmental damage']]",Flood,Causes,Environmental damage
+"[['Cameras', 'Detect', 'Flood']]",Cameras,Detect,Flood
+"[['Flood', 'Impacts', 'Water quality']]",Flood,Impacts,Water quality
+"[['River flood warning system', 'Generates', 'Alerts']]",River flood warning system,Generates,Alerts
+"[['Floodwalls', 'Mitigate', 'Flood']]",Floodwalls,Mitigate,Flood
+"[['Sensors', 'Detect', 'Flood']]",Sensors,Detect,Flood
+"[['Detention ponds', 'Mitigate', 'Flood']]",Detention ponds,Mitigate,Flood
+"[['Consumer cameras', 'Detect', 'Flood']]",Consumer cameras,Detect,Flood
+"[['River flood warning system', 'Detects', 'River overflow']]",River flood warning system,Detects,River overflow
+"[['Dam failure', 'Due to', 'Overtopping']]",Dam failure,Due to,Overtopping
+"[['Stormwater basin', 'Mitigate', 'Flood']]",Stormwater basin,Mitigate,Flood
+"[['Weather prediction', 'Anticipates', 'Storm surges']]",Weather prediction,Anticipates,Storm surges
+"[['Floodways', 'Mitigate', 'Flood']]",Floodways,Mitigate,Flood
+"[['Weather forecasting system', 'Anticipates', 'Storm surges']]",Weather forecasting system,Anticipates,Storm surges
+"[['Retention ponds', 'Mitigate', 'Flood']]",Retention ponds,Mitigate,Flood
+"[['River flood warning system', 'Uses', 'Sensors']]",River flood warning system,Uses,Sensors
+"[['Dam', 'Avoids', 'Flood']]",Dam,Avoids,Flood
+"[['Dam', 'Provides', 'Flood control']]",Dam,Provides,Flood control
+"[['River flood warning system', 'Analyzes', 'Data']]",River flood warning system,Analyzes,Data
+"[['Floodways', 'Diverts', 'River overflow']]",Floodways,Diverts,River overflow
+"[['Dam failure', 'Due to', 'Inadequate maintenance']]",Dam failure,Due to,Inadequate maintenance
+"[['Earthquake', 'Causes', 'Tsunami']]",Earthquake,Causes,Tsunami
+"[['Soil erosion', 'Leads to', 'Health and safety risks']]",Soil erosion,Leads to,Health and safety risks
+"[['Dam', 'Fails', 'Dam failure']]",Dam,Fails,Dam failure
+"[['Remote cameras', 'Detect', 'Flood']]",Remote cameras,Detect,Flood
+"[['Retention ponds', 'Contribute to', 'Flood control']]",Retention ponds,Contribute to,Flood control
+"[['Dam failure', 'Due to', 'Material defects']]",Dam failure,Due to,Material defects
+"[['Water quality', 'Impacts', 'Health and safety risks']]",Water quality,Impacts,Health and safety risks
+"[['Heavy rainfall', 'Leads to', 'River overflow']]",Heavy rainfall,Leads to,River overflow
+"[['Stormwater basin', 'Uses', 'Sensors']]",Stormwater basin,Uses,Sensors
+"[['Water quality', 'Generates', 'Environmental damage']]",Water quality,Generates,Environmental damage
+"[['Evacuation of residents', 'Reduces', 'Loss of life']]",Evacuation of residents,Reduces,Loss of life
+"[['Railroads damage', 'is a type of', 'Property damage']]",Railroads damage,is a type of,Property damage
+"[['Alerts', 'Issued to', 'Sirens']]",Alerts,Issued to,Sirens
+"[['Evacuation of residents', 'Reduces', 'Health and safety risks']]",Evacuation of residents,Reduces,Health and safety risks
+"[['Alerts', 'Notify', 'Government authorities']]",Alerts,Notify,Government authorities
+"[['Vehicles damage', 'is a type of', 'Property damage']]",Vehicles damage,is a type of,Property damage
+"[['Bridge damage', 'is a type of', 'Property damage']]",Bridge damage,is a type of,Property damage
+"[['Homes damage', 'is a type of', 'Property damage']]",Homes damage,is a type of,Property damage
+"[['Environmental damage', 'Leads to', 'Loss of life']]",Environmental damage,Leads to,Loss of life
+"[['Detention ponds', 'is a type of', 'Stormwater basin']]",Detention ponds,is a type of,Stormwater basin
+"[['Retention ponds', 'is a type of', 'Stormwater basin']]",Retention ponds,is a type of,Stormwater basin
+"[['Alerts', 'Issued to', 'Television announcements']]",Alerts,Issued to,Television announcements
+"[['Water quality', 'Generates', 'Soil erosion']]",Water quality,Generates,Soil erosion
+"[['Buildings damage', 'is a type of', 'Property damage']]",Buildings damage,is a type of,Property damage
+"[['Alerts', 'Notify', 'General public']]",Alerts,Notify,General public
+"[['Alerts', 'Notify', 'Emergencies response agencies']]",Alerts,Notify,Emergencies response agencies
+"[['Detention ponds', 'Uses', 'Sensors']]",Detention ponds,Uses,Sensors
+"[['Alerts', 'Issued to', 'Emergency radio broadcasts']]",Alerts,Issued to,Emergency radio broadcasts
+"[['Emergency radio broadcasts', 'is a type of', 'Communication channels']]",Emergency radio broadcasts,is a type of,Communication channels
+"[['Alerts', 'Issued to', 'Communication channels']]",Alerts,Issued to,Communication channels
+"[['Emergencies response agencies', 'is a type of', 'General public']]",Emergencies response agencies,is a type of,General public
+"[['Hydrological monitoring system', 'Generates', 'Alerts']]",Hydrological monitoring system,Generates,Alerts
+"[['Alerts', 'Notify', 'People']]",Alerts,Notify,People
+"[['Soil erosion', 'is a type of', 'Environmental damage']]",Soil erosion,is a type of,Environmental damage
+"[['Alerts', 'Issued to', 'Social media notification']]",Alerts,Issued to,Social media notification
+"[['Hydrological monitoring system', 'Addresses', 'Health and safety risks']]",Hydrological monitoring system,Addresses,Health and safety risks
+"[['Alerts', 'Issued to', 'Dedicated smartphone app']]",Alerts,Issued to,Dedicated smartphone app
+"[['Retention ponds', 'Uses', 'Sensors']]",Retention ponds,Uses,Sensors
+"[['Alerts', 'Issued to', 'Mobile phone messages']]",Alerts,Issued to,Mobile phone messages
+"[['Consumer cameras', 'is a type of', 'Cameras']]",Consumer cameras,is a type of,Cameras
+"[['Dam', 'Provides', 'Irrigation']]",Dam,Provides,Irrigation
+"[['Government authorities', 'is a type of', 'General public']]",Government authorities,is a type of,General public
+"[['Remote cameras', 'is a type of', 'Cameras']]",Remote cameras,is a type of,Cameras
+"[['Sirens', 'is a type of', 'Communication channels']]",Sirens,is a type of,Communication channels
+"[['Environmental damage', 'Leads to', 'Health and safety risks']]",Environmental damage,Leads to,Health and safety risks
+"[['Mobile phone messages', 'is a type of', 'Communication channels']]",Mobile phone messages,is a type of,Communication channels
+"[['Sensors', 'Measure', 'Heavy rainfall']]",Sensors,Measure,Heavy rainfall
+"[['Retention ponds', 'Improve', 'Water quality']]",Retention ponds,Improve,Water quality
+"[['Weather prediction', 'Anticipates', 'Heavy rainfall']]",Weather prediction,Anticipates,Heavy rainfall
+"[['Weather forecasting system', 'Anticipates', 'Heavy rainfall']]",Weather forecasting system,Anticipates,Heavy rainfall
+"[['Sensors', 'Measure', 'Streamflow']]",Sensors,Measure,Streamflow
+"[['Dedicated smartphone app', 'is a type of', 'Communication channels']]",Dedicated smartphone app,is a type of,Communication channels
+"[['Remote cameras', 'Generate', 'Data']]",Remote cameras,Generate,Data
+"[['Data', 'Reflects', 'Water quality']]",Data,Reflects,Water quality
+"[['Social media notification', 'is a type of', 'Communication channels']]",Social media notification,is a type of,Communication channels
+"[['Sensors', 'Measure', 'Water quality']]",Sensors,Measure,Water quality
+"[['Cameras', 'Generate', 'Data']]",Cameras,Generate,Data
+"[['Hydrological monitoring system', 'Analyzes', 'Data']]",Hydrological monitoring system,Analyzes,Data
+"[['Consumer cameras', 'Generate', 'Data']]",Consumer cameras,Generate,Data
+"[['Weather forecasting system', 'Uses', 'Sensors']]",Weather forecasting system,Uses,Sensors
+"[['Hydrological monitoring system', 'Uses', 'Sensors']]",Hydrological monitoring system,Uses,Sensors
+"[['People', 'is a type of', 'General public']]",People,is a type of,General public
+"[['Sensors', 'Measure', 'Soil moisture']]",Sensors,Measure,Soil moisture
+"[['Sensors', 'Measure', 'Water level']]",Sensors,Measure,Water level
+"[['Weather forecasting system', 'Analyzes', 'Data']]",Weather forecasting system,Analyzes,Data
+"[['Sensors', 'Generate', 'Data']]",Sensors,Generate,Data
+"[['Snowfall', 'Causes', 'Snowmelt']]",Snowfall,Causes,Snowmelt
+"[['Hydrological monitoring system', 'Assesses', 'Water quality']]",Hydrological monitoring system,Assesses,Water quality
+"[['Television announcements', 'is a type of', 'Communication channels']]",Television announcements,is a type of,Communication channels
+"[['Weather forecasting system', 'Generates', 'Forecasting']]",Weather forecasting system,Generates,Forecasting
+"[['Weather forecasting system', 'is a type of', 'Weather prediction']]",Weather forecasting system,is a type of,Weather prediction
+"[['Weather forecasting system', 'Anticipates', 'Snowfall']]",Weather forecasting system,Anticipates,Snowfall
+"[['Weather prediction', 'Anticipates', 'Snowfall']]",Weather prediction,Anticipates,Snowfall

@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+
+{% block title %} Main {% endblock %}
+
+{% block content %}
+
+<div class="tab-content mt-3" id="tab-content">
+    <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel"
+         aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loadingModalLabel">Identifying relevant information...</h5>
+                </div>
+                <div class="modal-body">
+                    <p>This may take a while, please don't close this window.</p>
+                    <p>However, if you want to work on another subgoal, you can <a href="javascript:void(0);" id="openGoalModelTab">open the goal model in a new tab <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                    </svg></a></p>
+                    <br>
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar"
+                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="verificationModal" tabindex="-1" role="dialog" aria-labelledby="verificationModalLabel"
+         aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="verificationModalLabel">You have not selected any information</h5>
+                </div>
+                <div class="modal-body">
+                    Are you sure you did not use any of the information extracted to produce your goal?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="verificationModalYesBtn">Yes</button>
+                    <button type="button" class="btn btn-secondary" id="verificationModalNoBtn" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if highlevelgoal is defined %}
+    <p><b>Parent goal</b>: {{ highlevelgoal }}</p> <!-- Print the high-level goal -->
+    {% endif %}
+
+    <!-- Form -->
+    <form id="myForm" action="/" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <!-- Goal type -->
+                <select id="goal_type" class="form-select text-black-50 bg-light" name="goal_type" aria-label="goal_type_selection" data-toggle="tooltip" data-placement="bottom" title="Whether your subgoal will express a property that a system should satisfy (<b>ACHIEVE</b>) or a property that should never be satisfied (<b>AVOID</b>)">
+                    <option hidden disabled selected value="">Goal type</option>
+                    <option value="ACHIEVE">ACHIEVE</option>
+                    <option value="AVOID">AVOID</option>
+                </select>
+            </div>
+            {% if goal_with_outputs is defined %}
+            <div class="input-group-prepend">
+                <!-- Refinement type -->
+                <select id="refinement" class="form-select text-black-50 bg-light" name="refinement" aria-label="refinement_selection" data-toggle="tooltip" data-placement="bottom" title="Whether your subgoal: <ul><li>should be satisfied additionally to its sibling goals (<b>AND</b> refinement)</li><li>is among a set of goals of which at least one should be satisfied (<b>OR</b> refinement)</li><li>is among a set of goals of which exactly one should be satisfied (<b>XOR</b> refinement)</li></ul>... to fulfill its parent.<br><br>If you do not plan to add siblings to your goal, use the <b>AND</b> refinement.">
+                    <option hidden disabled selected value="">Refinement</option>
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                    <option value="XOR">XOR</option>
+                </select>
+            </div>
+            {% endif %}
+            <!-- Input - High-level goal -->
+            <input type="text" class="form-control" placeholder="{% if highlevelgoal is defined %}Enter the subgoal{% else %}Enter the high-level goal{% endif %}" name="highlevelgoal" id="input-datalist" list="list-goal" required>
+            <datalist id="list-goal">
+                {% for g in all_goal %}
+                    <option value="{{ g.goal_name }}"></option>
+                {% endfor %}
+            </datalist>
+            <!-- Submit button -->
+            <div class="input-group-append">
+                <button type="button" class="btn btn-primary rounded-right" id="okBtn">OK</button>
+            </div>
+            {%if hlg_id is defined%}
+            <input type="hidden" name="hlg_id" value="{{ hlg_id }}">
+            {%else%}
+            <input type="hidden" name="hlg_id" value="-1">
+            {%endif%}
+        </div>
+        <!-- <p class="alert alert-info" role="alert">
+            <strong>Reminder</strong>:<br>
+            A goal should start with an action verb and must be composed of a single sentence with a small number of clauses (e.g., "Anticipate the impact of floods on people").
+            Creating goals from ACHIEVE facts, you can remove the subject, like: Flood warning system, Recommends, Evacuation of residents - Recommend the evacuation of residents
+            To create a goal from an AVOID fact, you can take into account the entire fact, like: Flood, Causes, Loss of life - Prevent flood from causing loss of life
+            From combining facts, if you choose two facts, Flood warning system, Recommends, Evacuation of residents and Flood, Causes, Loss of life - To prevent loss of life caused by flood, recommend evacuation of residents
+        </p> -->
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Guidelines for formulating goals 💡
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse alert-info" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <ol>
+                      <li><strong>Structure:</strong>
+                        <ol type="a">
+                          <li>Start with an <strong>action verb</strong>.</li>
+                          <li>Keep the goal as a <strong>single, concise sentence</strong> with minimal clauses.</li>
+                          <li><u>Example</u>: <em>"Anticipate the impact of floods on people"</em></li>
+                        </ol>
+                      </li>
+
+                      <li><strong>Creating Goals from ACHIEVE Facts:</strong>
+                        <ol type="a">
+                          <li>You can remove the subject and rephrase the fact as an action, depending on the context of the facts.</li>
+                          <li><u>Example</u>:
+                            <ul>
+                              <li>Fact: <em>"Flood warning system Recommends Evacuation of residents"</em></li>
+                              <li>Goal: <em>"Recommend the evacuation of residents"</em></li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </li>
+
+                      <li><strong>Creating Goals from AVOID Facts:</strong>
+                        <ol type="a">
+                          <li>Use the entire fact to frame a preventive action.</li>
+                          <li><u>Example</u>:
+                            <ul>
+                              <li>Fact: <em>"Flood Causes Loss of life"</em></li>
+                              <li>Goal: <em>"Prevent floods from causing loss of life"</em></li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </li>
+
+                      <li><strong>Combining Multiple Facts into a Goal:</strong>
+                        <ol type="a">
+                          <li>Integrate related facts into a single, coherent objective.</li>
+                          <li><u>Example</u>:
+                            <ul>
+                              <li>Facts:
+                                <ul>
+                                  <li><em>"Flood warning system Recommends Evacuation of residents"</em></li>
+                                  <li><em>"Flood Causes Loss of life"</em></li>
+                                </ul>
+                              </li>
+                              <li>Combined Goal: <em>"To prevent loss of life caused by floods, recommend evacuation of residents"</em></li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </li>
+
+                      <li><strong>Goal relaxation:</strong>
+                        <ol type="a">
+                          <li>If the tool doesn't provide any information, you can relax the goal by removing parts that make the goal more specific.</li>
+                          <li><u>Example</u>:
+                            <ul>
+                                <li><em>"Anticipate the impact of floods on people"</em> --> <em>"Anticipate the impact of floods"</em></li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </li>
+                  </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if not goal_with_outputs %} <!-- -->
+            {% if unique_triples_entailed is defined %}
+            <br>
+            <!-- Entailed triples -->
+            <table id="data_triples" class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Type <i class="bi bi-question-circle-fill text-primary" data-toggle="tooltip" data-placement="bottom" title="Whether the information describes a fact which should be <strong>ACHIEVE</strong>d or <strong>AVOID</strong>ed."></i></th>
+                    {% if with_generated_texts %}
+                    <th>Generated text <i class="bi bi-question-circle-fill text-primary" data-toggle="tooltip" data-placement="bottom" title="<strong>A more readable version of the groups of information extracted.</strong> <br><br>Should not be considered as a goal by itself but can be taken as inspiration to produce one."></i></th>
+                    {% endif %}
+                    <th>Information extracted <i class="bi bi-question-circle-fill text-primary" data-toggle="tooltip" data-placement="bottom" title="<strong>Relevant information extracted in raw format.</strong> <br><br>Should not be considered as goals by themselves but can be taken as inspiration to produce one. <br><br>If you use one or several pieces of information to refine your goal, please tick them."></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for idx, row in outputs.iterrows() %} <!-- outputs -->
+                    <tr>
+                        <td data-name="goal_type" class="goal_type">{{ row['goal_type'] }}</td>
+                        {% if with_generated_texts %}
+                        <td data-name="generated_text" class="generated_text">{{ row['generated_text'] }}</td>
+                        {% endif %}
+                        <td>
+                            {% for t in row['entailed_triple'] %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="filtered_out_triples_with_goal_id"
+                                       id="{{ row['goal_id'] }}" value="{{ row['goal_id'] }}_{{ t }}">
+                                <label class="form-check-label" for="{{ row['goal_id'] }}">{{ t[0] }} {{ t[1] }} {{ t[2] }}</label>
+                            </div>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </form>
+            {% else %}
+                {% if message is defined %}
+                    <br>
+                    <div class="alert alert-danger" role="alert" id="noTripleFoundMsg">
+                        No relevant information has been identified!
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <br>
+            <!-- Entailed triples -->
+            {% if outputs|length > 0 %}
+                <table id="data_triples" class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Type <i class="bi bi-question-circle-fill text-primary" data-toggle="tooltip" data-placement="bottom" title="Whether the information describes a fact which should be <strong>ACHIEVE</strong>d or <strong>AVOID</strong>ed."></i></th>
+                        {% if with_generated_texts %}
+                        <th>Generated text <i class="bi bi-question-circle-fill text-primary" data-toggle="tooltip" data-placement="bottom" title="<b>A more readable version of certain information extracted.</b> <br><br>Should not be considered as a goal by itself but can be taken as inspiration to produce one."></i></th>
+                        {% endif %}
+                        <th>Information extracted <i class="bi bi-question-circle-fill text-primary" data-toggle="tooltip" data-placement="bottom" title="<b>Relevant information extracted in raw format.</b> <br><br>Should not be considered as goals by themselves but can be taken as inspiration to produce one. <br><br>If you use one or several pieces of information to refine your goal, please tick them."></i></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for idx, row in outputs.iterrows() %} <!-- outputs -->
+                    <tr>
+                        <td data-name="goal_type" class="goal_type">{{ row['goal_type'] }}</td>
+                        {% if with_generated_texts %}
+                        <td data-name="generated_text" class="generated_text prevent-select">{{ row['generated_text'] }}</td>
+                        {% endif %}
+                        <td>
+                            {% for t in row['entailed_triple'] %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="filtered_out_triples_with_goal_id"
+                                       id="{{ row['goal_id'] }}" value="{{ row['goal_id'] }}_{{ t }}">
+                                <label class="form-check-label prevent-select" for="{{ row['goal_id'] }}">{{ t[0] }} {{ t[1] }} {{ t[2] }}</label>
+                            </div>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-danger" role="alert" id="noTripleFoundMsg">
+                    No relevant information has been identified!
+                </div>
+            {% endif %}
+            </form>
+        {% endif %}
+    <br>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#createGoalNav a').addClass('active')
+        $('[data-toggle="tooltip"]').tooltip({"html": true, "placement": "bottom", "trigger": "hover"})
+        $('[data-toggle="tooltip"]').click(function() {
+            $('[data-toggle="tooltip"]').tooltip("hide", {"html": true, "placement": "bottom", "trigger": "hover"})
+        })
+        $('#data_triples').DataTable();
+
+        $("select").on("change", function() {
+            $(this).removeClass("text-black-50 bg-light")
+            $(this).css("background-color", "#ffffff")
+            $(this).css("color", "#172b4d")
+        })
+        $("#input-datalist").on("input", function() {
+            $(this).css("background-color", "#ffffff")
+        })
+
+        function verifyFieldsAndSubmit() {
+            if ($("#input-datalist").val() && $("#goal_type").val() && ($("#refinement").val() || !$("#refinement").length)) {
+                if ($("#data_triples td").hasClass("dataTables_empty") ||
+                    !$("#data_triples").length ||
+                    $('input[name="filtered_out_triples_with_goal_id"]:checkbox:checked').length) {
+                    $(this).prop("disabled", true);
+                    $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`);
+
+                    $("#loadingModal").modal({
+                        "backdrop": "static",
+                        "keyboard": false
+                    }).modal("show");
+
+                    $("#myForm").submit();
+                } else {
+                    $("#verificationModal").modal("show");
+                }
+
+            } else {
+                if (!$("#input-datalist").val()) {
+                    $("#input-datalist").removeClass("text-black-50 bg-light")
+                    $("#input-datalist").css("background-color", "#ffda69");
+                }
+                if (!$("#goal_type").val()) {
+                    $("#goal_type").removeClass("text-black-50 bg-light")
+                    $("#goal_type").css("background-color", "#ffda69")
+                }
+                if (!$("#refinement").val() && $("#refinement").length) {
+                    $("#refinement").removeClass("text-black-50 bg-light")
+                    $("#refinement").css("background-color", "#ffda69")
+                }
+            }
+        }
+
+        $("#okBtn").click(verifyFieldsAndSubmit);
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                verifyFieldsAndSubmit();
+                return false;
+            }
+        });
+
+        $("#verificationModalYesBtn").click(function() {
+            $("#verificationModal").modal("hide")
+            $("#okBtn").prop("disabled", true);
+            $("#okBtn").html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`);
+
+            $("#loadingModal").modal({
+                "backdrop": "static",
+                "keyboard": false
+            }).modal("show");
+
+            $("#myForm").submit();
+        })
+
+        $("#verificationModalNoBtn").click(function() {
+            $("#verificationModal").modal("hide")
+        })
+
+        $("#openGoalModelTab").click(function() {
+            window.open('/goal_model_generation', '_blank').focus();
+        })
+    });
+</script>
+{% endblock %}

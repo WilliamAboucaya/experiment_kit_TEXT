@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#SBATCH --job-name=class  	                                  # Job name
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=abdoul-shahin.abdoul-soukour@inria.fr
+#SBATCH --cpus-per-gpu=16
+#SBATCH --partition=gpu                                       # Name of the partition
+#SBATCH --gres=gpu:rtx8000:1                                  # Request 1 GPU (RTX8000)
+#SBATCH --mem-per-gpu=100gb                                   # Increase total memory allocated
+##SBATCH --mem=64gb
+#SBATCH --time=47:59:59
+#SBATCH --output=classification_%j.out                  # Standard output and error log
+
+echo "### Running $SLURM_JOB_NAME ###"
+
+set -x
+
+cd ${SLURM_SUBMIT_DIR}
+
+module purge
+
+# Activate conda environment
+source /home/$USER/.bashrc
+conda activate /home/$USER/miniconda3/envs/py311
+
+# Set CUDA memory configuration
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+# Python script
+srun python classification.py

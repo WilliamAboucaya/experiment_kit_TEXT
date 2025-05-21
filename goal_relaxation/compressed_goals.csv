@@ -1,0 +1,16 @@
+id,goal,compressed text
+0,Anticipate the impact of floods on people,Anticipate impact of floods
+1,Avoid losses of lives and other risks for health and safety risks from flooding,Avoid losses of lives from flooding
+2,Mitigate health and safety risks from flooding,Mitigate health and safety risks
+3,Ensure the evacuation of residents in case of flood using a flood warning system,Ensure evacuation in case of flood
+4,Generate alerts recommending evacuation of residents in case of flood risk,Generate alerts for evacuation in case of flood risk
+5,Analyze forecasting data for flood prediction using flood warning system,Analyze forecasting data for flood prediction
+6,Issue alerts to ensure that all residents receive timely evacuation notifications,Residents should receive evacuation notifications
+7,"Distribute alerts across multiple channels, including emergency radio broadcasts, sirens, television announcements, and a dedicated smartphone app.",Distribute alerts across multiple channels
+8,Evaluate and address health and safety risks during flooding by using hydrological monitoring systems,Evaluate and address health and safety risks during flooding
+9,Deploy sensors to measure water quality,Sensors measure water quality
+10,Use remote and consumers cameras to generate real-time data on flooding areas,Use cameras to generate data on flooding areas
+11,Analyze data from sensors and cameras to assess water quality during flood events,Analyze data to assess water quality during flood events
+12,Generate and send alerts to residents about water quality issues,Generate and send alerts about water quality issues
+13,Minimize structural damage during floods,Minimize structural damage during floods
+14,"Implement flood mitigation infrastructure, such as stormwater basins, floodwalls, floodways, and dams",Implement flood mitigation infrastructure
